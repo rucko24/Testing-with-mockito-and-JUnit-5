@@ -23,7 +23,7 @@ import static org.hamcrest.core.Is.is;
  * @Mock donde esta creara las implementaciones que necesitemos.
  *
  * Mientras que nuestra clase CupCake sera la que vamos a testear, anotada con @InjectMock sin necesidad
- * de instanciarla, luego esta inyectara todos los mocks que están marcados con @Mock, @Spy etc
+ * de instanciarla porque el framework lo hace por nosotros, luego esta inyectara todos los mocks que están marcados con @Mock, @Spy etc
  */
 @ExtendWith(MockitoExtension.class)
 class MockingAndSpyTest {

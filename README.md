@@ -1,1 +1,1 @@
-"# Basic example with mock and spy annotations" 
+# Basic example with @Mock and @Spy annotations 
