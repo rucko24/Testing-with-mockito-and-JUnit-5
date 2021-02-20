@@ -16,7 +16,7 @@ import static org.hamcrest.core.Is.is;
  * Testing a CupCake with some ingredient ;)
  */
 @ExtendWith(MockitoExtension.class)
-class MockingWithInjectMocksTests {
+class MockingWithSomeIngredientTests {
 
 	private static final String INGREDIENT = "Strawberry";
 
@@ -27,12 +27,13 @@ class MockingWithInjectMocksTests {
 	private CupCake cupCake;
 
 	@Test
-	void mockitoGamePlayerTest() {
+	void mockToReturnStrawberry() {
 		Mockito.when(ingredient.getFlavor()).thenReturn(INGREDIENT);
 
 		final String expectedFlavor = CupCake.INGREDIENT_FOR_CUPCAKE.concat(INGREDIENT);
 
 		assertThat(expectedFlavor, is(cupCake.getIngredient()));
 	}
+
 
 }
