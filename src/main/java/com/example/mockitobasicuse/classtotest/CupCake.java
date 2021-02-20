@@ -23,7 +23,7 @@ public class CupCake {
         return INGREDIENT_FOR_CUPCAKE.concat(ingredient.getFlavor());
     }
 
-    public int getIngredients() {
+    public int getSizeOfAllIngredients() {
         return ingredients.size();
     }
 
