@@ -18,7 +18,8 @@ public class MyReactorServiceImpl implements MyReactorService {
         return Flux.just(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)// Flux.range :D
                 .doOnError(error -> log.info("Error with item {}", error))
                 .flatMap(item -> this.launchError(item)
-                        .switchIfEmpty(Mono.defer(this.service::fallback)))
+                        .switchIfEmpty(Mono.defer(this.service::fallback)
+                                .doOnNext(onNext -> log.info("Fallback {}", -1))))
                 .doOnNext(onNext -> log.info("onNext {}", onNext));
     }
 

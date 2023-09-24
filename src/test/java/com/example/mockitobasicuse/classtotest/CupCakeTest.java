@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -11,6 +13,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -76,4 +79,21 @@ class CupCakeTest {
 
         assertThat(cupCake.canISpyThere()).isTrue();
     }
+
+    @ParameterizedTest
+    @ArgumentsSource(CupCakeArgumentsProvider.class)
+    @DisplayName("Usando muchos mas ingredientes")
+    void masFrutas(final List<Ingredient> ingredientsList, Ingredient fruta1, Ingredient fruta2, Ingredient fruta3) {
+
+        cupCake = new CupCake(ingredient, ingredientsList, spyMePlease);
+
+        assertThat(fruta1.getFlavor()).isEqualTo(cupCake.getIngredients().get(0).getFlavor());
+        assertThat(fruta2.getFlavor()).isEqualTo(cupCake.getIngredients().get(1).getFlavor());
+        assertThat(fruta3.getFlavor()).isEqualTo(cupCake.getIngredients().get(2).getFlavor());
+
+        assertThat(ingredientsList)
+                .usingRecursiveComparison()
+                .isEqualTo(cupCake.getIngredients());
+    }
+
 }
